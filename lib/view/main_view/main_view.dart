@@ -38,47 +38,92 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 8),
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50), color: kblackClr),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
-            child: BottomNavigationBar(
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              backgroundColor: kblackClr,
-              type: BottomNavigationBarType.fixed,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home_rounded),
-                  label: 'Home',
+      body: Stack(
+        children: [
+          SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: _widgetOptions.elementAt(_selectedIndex)),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 8),
+              width: MediaQuery.of(context).size.width * 0.5,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50), color: kblackClr),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+                child: BottomNavigationBar(
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  backgroundColor: kblackClr,
+                  type: BottomNavigationBarType.fixed,
+                  items: const <BottomNavigationBarItem>[
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.home_rounded),
+                      label: 'Home',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.shopping_bag),
+                      label: 'Business',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.favorite),
+                      label: 'Business',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.settings),
+                      label: 'School',
+                    ),
+                  ],
+                  currentIndex: _selectedIndex,
+                  selectedItemColor: kprimaryClr,
+                  unselectedItemColor: kwhiteClr,
+                  onTap: _onItemTapped,
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_bag),
-                  label: 'Business',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite),
-                  label: 'Business',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'School',
-                ),
-              ],
-              currentIndex: _selectedIndex,
-              selectedItemColor: kprimaryClr,
-              unselectedItemColor: kwhiteClr,
-              onTap: _onItemTapped,
+              ),
             ),
           ),
-        ),
+        ],
       ),
+      // bottomNavigationBar: Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 8),
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //         borderRadius: BorderRadius.circular(50), color: kblackClr),
+      //     child: Padding(
+      //       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+      //       child: BottomNavigationBar(
+      //         showSelectedLabels: false,
+      //         showUnselectedLabels: false,
+      //         backgroundColor: kblackClr,
+      //         type: BottomNavigationBarType.fixed,
+      //         items: const <BottomNavigationBarItem>[
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.home_rounded),
+      //             label: 'Home',
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.shopping_bag),
+      //             label: 'Business',
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.favorite),
+      //             label: 'Business',
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.settings),
+      //             label: 'School',
+      //           ),
+      //         ],
+      //         currentIndex: _selectedIndex,
+      //         selectedItemColor: kprimaryClr,
+      //         unselectedItemColor: kwhiteClr,
+      //         onTap: _onItemTapped,
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
